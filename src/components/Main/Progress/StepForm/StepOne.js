@@ -1,4 +1,8 @@
 import Form from './Form.js'
+import styles from'./StepOne.module.scss'
+import { useContext } from 'react'
+import { FormContext } from '../../FromContext.js'
+
 
 const selectOptions = {
   title: [
@@ -43,9 +47,9 @@ const selectOptions = {
 
 function SelectGroup({label, options}){
   return (
-    <div className="select-group-container">
-        <div className="input-label">{label}</div>
-        <div className="select-wrapper">
+    <div className={styles.selectGroupContainer}>
+        <div className={styles.inputLabel}>{label}</div>
+        <div className={styles.selectWrapper}>
             <select required>
                   {options.map((option) => {
                     return <option value={option.value} key={option.value}>{option.name}</option>
@@ -56,16 +60,29 @@ function SelectGroup({label, options}){
   )
 }
 
-function InputGroup({label, type, placeholder, id, name, maxLength}){
+export function InputGroup({label, type, placeholder, id, name, maxLength}){
+  const { handleInputChange } = useContext(FormContext)
+
+
+  let InputId = 'input__' + id
   return (
-    <div className="input-group-container">
-      <div className="input-label">{label}</div>
-        <input 
-          type={type}
-          placeholder={placeholder}
-          id={id}
-          name={name} 
-          maxLength={maxLength} required/>
+    <div className={InputId}>
+      <div className={styles.inputLabel}>{label}</div>
+      <input 
+        type={type}
+        placeholder={placeholder}
+        name={name} 
+        maxLength={maxLength} required
+        onChange={handleInputChange}
+        />
+    </div>
+  )
+}
+
+export function FormRow({children}){
+  return (
+    <div className={styles.formRow}>
+      {children}
     </div>
   )
 }
@@ -73,9 +90,9 @@ function InputGroup({label, type, placeholder, id, name, maxLength}){
 export default function StepOne(){
   return (
     <Form>
-    <h3 className="form-title">寄送地址</h3>
-    <section className="form-body">
-     <div className="form-row">
+    <h3 className={styles.formTitle}>寄送地址</h3>
+    <section className={styles.formBody}>
+     <FormRow>
       <SelectGroup 
         label="稱謂"
         options={selectOptions.title} />
@@ -85,8 +102,8 @@ export default function StepOne(){
         type="text"
         id="name"
         />
-     </div>
-     <div className="form-row">
+     </FormRow>
+     <FormRow>
       <InputGroup
         label="電話"
         placeholder="請輸入行動電話"
@@ -100,8 +117,8 @@ export default function StepOne(){
         type="email"
         id="Email"
         />
-     </div>
-     <div className="form-row">
+     </FormRow>
+     <FormRow>
       <SelectGroup 
         label="縣市"
         options={selectOptions.city} />
@@ -111,7 +128,7 @@ export default function StepOne(){
         type="text"
         id="address"
         />
-     </div>
+     </FormRow>
     </section>
     </Form>
 

@@ -1,0 +1,60 @@
+%label {
+  font-size: 1rem;
+  color: var(--input-label);
+  font-weight: bold;
+}
+
+%border {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 12px;
+  line-height: 16px;
+  border: 1px solid var(--black);
+  border-radius: 4px;
+}
+
+@mixin font-setting($family, $size, $weight, $color) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
+.formRow {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+:global(input){
+  @extend %border;
+  margin-top: 10px;
+}
+
+:global(.input__card__name),
+:global(.input__card__number) {
+  grid-column: 1/5;
+}
+
+:global(.input__card__date){
+  grid-column: 1/4;
+}
+:global(.input__card__cvc) {
+  grid-column: 4/7;
+}
+
+// form text
+.inputLabel {
+  @extend %label;
+}
+
+.formTitle {
+  @include font-setting(var(--main-font-family), 2rem, 700, var(--grey-heavy))
+}
+
+
+
+

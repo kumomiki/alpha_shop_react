@@ -1,0 +1,106 @@
+%progressCircle{
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;;
+}
+
+%progressLabel{
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 24px;
+  padding-left: 20px;
+}
+
+%progressLineOriginal{
+  width: 100px;
+  height: 2px;
+  top: 15px;
+  background-color: var(--grey-light);
+  position: absolute;
+
+}
+
+
+.progressText {
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 24px;
+}
+
+
+.progressStepContainer{
+  width: 100%;
+
+
+  .progressTitle{
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .progressWrapper {
+    width: 100%;
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    .progressGroup {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    
+      .progressCircleDone {
+        @extend %progressCircle;
+        color: var(--white);
+        background-color: var(--grey-heavy);
+        border: 1px solid var(--grey-heavy);
+        }
+    
+      .progressCircleUndone {
+        @extend %progressCircle;
+        color: var(--grey-light);
+        background-color: var(--white);
+        border: 1px solid var(--grey-light);
+      }
+    
+      .progressLabelDone {
+        @extend %progressLabel;
+        color: var(--grey-heavy);
+      }
+    
+      .progressLabelUndone {
+        @extend %progressLabel;
+        color: var(--grey-light);
+     }
+    }
+
+
+    .progressLineBack {
+      @extend %progressLineOriginal;
+      left: calc(25% - 15px);
+      background-color: var(--black);
+      }
+
+    .progressLineNext {
+      @extend %progressLineOriginal;
+      right: calc(20% + 15px);
+      }
+
+    .progressLineDone {
+      @extend %progressLineOriginal;
+      background-color: var(--black);
+      }
+    
+    .progressLineUndone {
+      @extend %progressLineOriginal;
+      background-color: var(--grey-light);
+    }
+
+  }
+
+}
+
+
